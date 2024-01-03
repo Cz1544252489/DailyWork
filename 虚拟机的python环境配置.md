@@ -2,7 +2,7 @@
 
 ## 1 基础部分
 
-### 使用环境为ubuntu 22.04 TLS x64
+### 使用环境为ubuntu 22.02 TLS
 
 ```bash
 apt-get update
@@ -86,6 +86,8 @@ pip install tensorflow
 考虑使用自动安装的python版本
 
 ```bash
+# 该脚本针对于vultr的硅谷处的节点的ubuntu22.04 TLS版本
+# 新加坡的apt安装速度不行
 apt-get -y update
 apt-get -y upgrade 
 
@@ -93,8 +95,9 @@ apt-get -y upgrade
 apt -y install libssl-dev
 apt -y install libffi-dev
 
+# 这里需要一个判断条件以根据情况安装
 python3 -V
-
+# 输出 Python 3.10.12 时安装以下版本
 apt -y install python3.10-venv
 
 # 开辟一个新的虚拟Python环境
@@ -113,19 +116,40 @@ pip install numpy
 pip install tensorflow
 pip install jupyter
 
+# 开启防火墙端口8888
+ufw allow 8888
+
 # 使用jupyter
 jupyter notebook password
 jupyter notebook --generate-config
+
+# 需要一段sed代码以自动修改用于替换下面一行代码
 vim ~/.jupyter/jupyter_notebook_config.py
 
-# 到这里一下需要手动修改
 jupyter notebook --allow-root
-# jupyter server --allow-root
 ```
 
+## 2.2  Jupyter Notebook 配置
+
+Jupyter Notebook 默认仅允许本地访问。要从远程访问，你需要修改一些配置：
+
+- 运行以下命令以生成配置文件（如果尚未生成）：
+
+  ```bash
+  jupyter notebook --generate-config
+  ```
+
+- 打开生成的配置文件（通常在 `~/.jupyter/jupyter_notebook_config.py`）。
+
+- 找到并修改以下配置项（删除行首的 `#` 并设置值）：
+
+  - `c.NotebookApp.ip = '0.0.0.0'`（允许任何 IP 地址访问）
+  - `c.NotebookApp.open_browser = False`（不自动打开浏览器，因为你是在远程服务器上运行）
+  - `c.NotebookApp.port = 8888`（或你选择的其他端口）
 
 
-## 2.2 尝试安装jupyterbook
+
+## 2.3 尝试安装jupyterbook
 
 ```
 # 需要安装sqlite3
@@ -140,26 +164,6 @@ jupyter server --generate-config
 cd
 git clone https://github.com/jupyter/jupyter_client.git
 ```
-
-## 2.3 ChatGPT给出的解决方案
-
-
-
-如果你已经在远程 Ubuntu 服务器上安装并启动了 Jupyter Notebook，但无法从本地机器进行连接，可能存在以下几个问题。以下是一些解决方案：
-
-### 1. Jupyter Notebook 配置
-
-Jupyter Notebook 默认仅允许本地访问。要从远程访问，你需要修改一些配置：
-
-- 运行以下命令以生成配置文件（如果尚未生成）：
-  ```bash
-  jupyter notebook --generate-config
-  ```
-- 打开生成的配置文件（通常在 `~/.jupyter/jupyter_notebook_config.py`）。
-- 找到并修改以下配置项（删除行首的 `#` 并设置值）：
-  - `c.NotebookApp.ip = '0.0.0.0'`（允许任何 IP 地址访问）
-  - `c.NotebookApp.open_browser = False`（不自动打开浏览器，因为你是在远程服务器上运行）
-  - `c.NotebookApp.port = 8888`（或你选择的其他端口）
 
 ## 3 尝试配置BDA的环境
 
