@@ -113,14 +113,20 @@ pip list
 # 安装一些包
 pip install torch
 pip install numpy
-pip install tensorflow
+# tensorflow暂时不预装
+# pip install tensorflow
 pip install jupyter
 
 # 开启防火墙端口8888
 ufw allow 8888
 
 # 使用jupyter
-jupyter notebook password
+# 由于服务器的即时性，在遇到其他破坏前不使用密码
+# 由于自带的安全性设置，必须要设置密码，否则需要使用token才能进入
+# 这一部分放到代码中尝试
+# jupyter notebook password
+# 可以不用设置密码，直接使用token登陆即可，token会在jupyter notebook
+# 运行后自动生成
 jupyter notebook --generate-config
 
 # 需要一段sed代码以自动修改用于替换下面一行代码
@@ -128,6 +134,56 @@ vim ~/.jupyter/jupyter_notebook_config.py
 
 jupyter notebook --allow-root
 ```
+
+```bash
+# 考虑上面代码中的两个问题
+# 1 python-venv的安装版本问题
+pa=$(python3 -V | cut -c 8-11)
+paname='python'$pa'-venv'
+apt -y install $paname
+# 测试可以在 3.10版本正常运行
+
+# 2 jupyter_notebook_config.py的sed修改
+sed -i '/# c.ServerApp.ip =/{s/localhost/0.0.0.0/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
+sed -i '/# c.ServerApp.open_browser/s/^..//' ~/.jupyter/jupyter_notebook_config.py
+sed -i '/# c.ServerApp.port =/{s/0/8888/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
+sed -i "/# c.ServerApp.password =/{s/''/'1544252489'/; s/^..//;}" ~/.jupyter/jupyter_notebook_config.py
+
+# 用上述方法修改密码似乎无法使用
+```
+
+下面是修改两项后可以直接运行的代码
+
+```bash
+apt-get -y update
+apt-get -y upgrade
+apt -y install libssl-dev
+apt -y install libffi-dev
+ufw allow 8888
+pa=$(python3 -V | cut -c 8-11)
+paname='python'$pa'-venv'
+apt -y install $paname
+cd
+python3 -m venv tf-env
+source ~/tf-env/bin/activate 
+pip install torch
+pip install numpy
+pip install jupyter
+jupyter notebook --generate-config
+sed -i '/# c.ServerApp.ip =/{s/localhost/0.0.0.0/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
+sed -i '/# c.ServerApp.open_browser/s/^..//' ~/.jupyter/jupyter_notebook_config.py
+sed -i '/# c.ServerApp.port =/{s/0/8888/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
+# sed -i "/# c.ServerApp.password =/{s/''/'1544252489'/; s/^..//;}" ~/.jupyter/jupyter_notebook_config.py
+jupyter notebook --allow-root
+```
+
+或者尝试使用一下代码
+
+```bash
+wget https://file.cz123.top/9others/CodesFile/ToJupyter.sh && bash ToJupyter.sh
+```
+
+
 
 ## 2.2  Jupyter Notebook 配置
 
