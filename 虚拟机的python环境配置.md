@@ -165,9 +165,7 @@ paname='python'$pa'-venv'
 apt -y install $paname
 cd
 python3 -m venv tf-env
-source ~/tf-env/bin/activate 
-pip install torch
-pip install numpy
+source ~/tf-env/bin/activate
 pip install jupyter
 jupyter notebook --generate-config
 sed -i '/# c.ServerApp.ip =/{s/localhost/0.0.0.0/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
