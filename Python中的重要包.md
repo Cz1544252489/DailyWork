@@ -11,6 +11,7 @@ pip install pandas  # 用于导入数据
 pip install scipy
 pip install scikit-learn
 pip install matplotlib # 用于画图
+pip install torchvision
 # 用于构建一个可以远程在网页上运行代码的环境，应该已经安装完成了
 # pip install jupyter 
 ```
@@ -26,6 +27,7 @@ pandas
 scipy
 scikit-learn
 matplotlib
+torchvision
 ```
 
 那么可以用以下代码执行
