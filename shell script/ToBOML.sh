@@ -1,12 +1,12 @@
 #/bin/bash
 
-apt-get update
-apt-get upgrade
+apt-get -y update
+apt-get -y upgrade
 
 echo "更新完成"
 # 需要安装ssl
-apt install libssl-dev
-apt install libffi-dev
+apt -y install libssl-dev
+apt -y install libffi-dev
 
 echo "开始下载Python3.7"
 wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz
