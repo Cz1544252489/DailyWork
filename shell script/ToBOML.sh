@@ -36,14 +36,6 @@ git clone https://github.com/dut-media-lab/BOML.git
 
 # 安装依赖包
 # 其中要求tensorflow的版本为1.13.*到1.15.*
-cd ~/BDA
+cd ~/BOML
 pip install -r requirements.txt
 
-# 安装jupyter
-pip install jupyter
-jupyter notebook --generate-config
-sed -i '/# c.ServerApp.ip =/{s/localhost/0.0.0.0/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
-sed -i '/# c.ServerApp.open_browser/s/^..//' ~/.jupyter/jupyter_notebook_config.py
-sed -i '/# c.ServerApp.port =/{s/0/8888/; s/^..//;}' ~/.jupyter/jupyter_notebook_config.py
-# sed -i "/# c.ServerApp.password =/{s/''/'1544252489'/; s/^..//;}" ~/.jupyter/jupyter_notebook_config.py
-jupyter notebook --allow-root
