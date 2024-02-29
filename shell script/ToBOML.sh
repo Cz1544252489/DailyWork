@@ -39,3 +39,6 @@ git clone https://github.com/dut-media-lab/BOML.git
 cd ~/BOML
 pip install -r requirements.txt
 
+cd ~
+rm Python-3.7.11.tgz
+rm tensorflow-1.14.0-cp37-cp37m-manylinux1_x86_64.whl
