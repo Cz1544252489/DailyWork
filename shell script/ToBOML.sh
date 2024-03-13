@@ -29,6 +29,7 @@ pip install --upgrade pip
 cd
 wget https://files.pythonhosted.org/packages/f4/28/96efba1a516cdacc2e2d6d081f699c001d414cc8ca3250e6d59ae657eb2b/tensorflow-1.14.0-cp37-cp37m-manylinux1_x86_64.whl
 pip install tensorflow-1.14.0-cp37-cp37m-manylinux1_x86_64.whl
+pip install protobuf==3.20.*
 
 # 下载BOML代码
 cd
