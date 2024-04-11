@@ -67,14 +67,6 @@ git clone https://github.com/Cz1544252489/BDA.git
 cd ~/BDA
 pip install -r requirements.txt
 
-## 由于Cz1544252489的BDA库中已经有了以下修改，以下内容注释掉
-# 整个过程可以使用以下代码解决
-# 前两行用于清除来自numpy的警告
-# sed -i "1iimport warnings" ~/BDA/test_script/Data_hyper_cleaning.py
-# sed -i "2iwarnings.filterwarnings('ignore',category=FutureWarning)" ~/BDA/test_script/Data_hyper_cleaning.py
-# 后一行用消除来自tensorflow的警告
-# sed -i "5itf.get_logger().setLevel('ERROR')" ~/BDA/boml/extension.py
-
 # 提示
 echo "执行以下代码后可以正常使用: "
 echo "source ~/tf-env/bin/activate"
