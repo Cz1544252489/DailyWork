@@ -3,6 +3,10 @@
 apt-get -y update
 apt-get -y upgrade
 
+# 可能存在并没有默认安装以下应用的服务器
+apt install pip
+apt install git
+
 echo "更新完成"
 # 需要安装ssl
 apt install libssl-dev
