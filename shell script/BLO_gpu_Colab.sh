@@ -45,6 +45,7 @@ rm cuda_10.0.130_410.48_linux.run
 # cuda的环境配置
 echo "export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> ~/.bashrc
+echo "export TF_XLA_FLAGS=--tf_xla_cpu_global_jit" >>/.bashrc
 # 下面这一行需要在整个运行结束后执行一次（脚本内似乎无效）
 # source ~/.bashrc
 
