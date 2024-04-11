@@ -75,6 +75,10 @@ echo "更新完成"
 apt -y install libssl-dev
 apt -y install libffi-dev
 
+# 可能存在并没有默认安装以下应用的服务器
+apt -y install pip
+apt -y install git
+
 echo "开始下载Python3.7"
 wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz
 tar -zxf Python-3.7.11.tgz
