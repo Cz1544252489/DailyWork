@@ -175,4 +175,5 @@ build_env
 boml
 bda
 notice
+cd
 }
