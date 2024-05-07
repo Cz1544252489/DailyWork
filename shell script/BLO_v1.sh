@@ -140,7 +140,7 @@ sed -i "1iimport warnings" ~/BOML/test_script/script_helper.py
 sed -i "2iwarnings.filterwarnings('ignore',category=FutureWarning)" ~/BOML/test_script/script_helper.py
 
 # 后一行用消除来自tensorflow的警告
-sed -i "5itf.get_logger().setLevel('ERROR')" ~/BOML/boml/extension.py
+sed -i "30itf.get_logger().setLevel('ERROR')" ~/BOML/boml/extension.py
 
 }
 
