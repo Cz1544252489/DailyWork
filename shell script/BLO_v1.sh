@@ -126,21 +126,12 @@ pip install protobuf==3.20.*
 boml() {
 # 下载BOML代码
 cd
-git clone https://github.com/dut-media-lab/BOML.git
+git clone https://github.com/Cz1544252489/BOML.git
 
 # 安装依赖包
 # 其中要求tensorflow的版本为1.13.*到1.15.*
 cd ~/BOML
 pip install -r requirements.txt
-
-
-# 整个过程可以使用以下代码解决
-# 前两行用于清除来自numpy的警告
-sed -i "1iimport warnings" ~/BOML/test_script/script_helper.py
-sed -i "2iwarnings.filterwarnings('ignore',category=FutureWarning)" ~/BOML/test_script/script_helper.py
-
-# 后一行用消除来自tensorflow的警告
-sed -i "30itf.get_logger().setLevel('ERROR')" ~/BOML/boml/extension.py
 
 }
 
@@ -154,13 +145,6 @@ git clone https://github.com/Cz1544252489/BDA.git
 cd ~/BDA
 pip install -r requirements.txt
 
-## 由于Cz1544252489的BDA库中已经有了以下修改，以下内容注释掉
-# 整个过程可以使用以下代码解决
-# 前两行用于清除来自numpy的警告
-# sed -i "1iimport warnings" ~/BDA/test_script/Data_hyper_cleaning.py
-# sed -i "2iwarnings.filterwarnings('ignore',category=FutureWarning)" ~/BDA/test_script/Data_hyper_cleaning.py
-# 后一行用消除来自tensorflow的警告
-# sed -i "5itf.get_logger().setLevel('ERROR')" ~/BDA/boml/extension.py
 }
 
 notice(){
