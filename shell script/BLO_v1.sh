@@ -1,7 +1,26 @@
 #/bin/bash
 
-gpu_set(){
+RED="\033[31m"      # Error message
+GREEN="\033[32m"    # Success message
+YELLOW="\033[33m"   # Warning message
+BLUE="\033[36m"     # Info message
+PLAIN='\033[0m'
 
+colorEcho() {
+    echo -e "${1}${@:2}${PLAIN}"
+}
+
+InstallNotice(){
+colorEcho $BULE "Do you accept the previously read EULA? accept"
+colorEcho $BULE "(You are attempting to install on an unsupported configuration. Do you wish to continue? yes)"
+colorEcho $BULE "Install NIVDIA Accelerated Graphics Driver for Linux-x86_64 xxx? no"
+colorEcho $BULE "Install the CUDA 10.0 Toolkit? yes"
+colorEcho $BULE "Enter Toolkit Location. default(enter)"
+colorEcho $BULE "Do you want to install a symbolic link at /usr/local/cuda? yes"
+colorEcho $BULE "Install the CUDA 10.0 Samples? no"
+}
+
+gpu_set(){
 # 更新apt
 echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main universe" >> /etc/apt/sources.list
 
