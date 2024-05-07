@@ -1,13 +1,6 @@
 #/bin/bash
 
-##########################################
-#
-# 用于更新运行环境以使用GPU
-#
-############################################
-
 gpu_set(){
-# 降级 gcc
 
 # 更新apt
 echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main universe" >> /etc/apt/sources.list
