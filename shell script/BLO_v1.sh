@@ -68,6 +68,12 @@ echo "export TF_XLA_FLAGS=--tf_xla_cpu_global_jit" >>/.bashrc
 wget http://104.244.90.25:12345/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
+# 先测试当前服务器的连通性
+if [ $? -ne 0 ]; then
+    echo "文件不存在或下载失败，程序中断。"
+    exit 1
+fi
+
 wget http://104.244.90.25:12345/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
